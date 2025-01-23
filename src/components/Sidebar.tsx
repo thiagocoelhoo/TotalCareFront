@@ -6,11 +6,11 @@ export function Sidebar() {
         },
         {
             "name": "Consultas",
-            "href": "#home",
+            "href": "/app/consultas",
         },
         {
             "name": "Pacientes",
-            "href": "#home",
+            "href": "/app/pacientes",
         },
         {
             "name": "Configurações",
@@ -23,10 +23,10 @@ export function Sidebar() {
                 {pages.map(page => {
                     return (
                         <li
-                            className="px-4 py-2 mb-3 border border-transparent rounded-lg text-center text-xl font-medium text-neutral-600 hover:bg-white hover:text-blue-700"
+                            className="mb-3 border border-transparent rounded-lg text-center text-xl font-medium text-neutral-600 hover:bg-white hover:text-blue-700"
                             key={page.name}
                         >
-                            {page.name}
+                            <a className="px-4 py-2 block" href={page.href}>{page.name}</a>
                         </li>);
                 })}
             </ul>
