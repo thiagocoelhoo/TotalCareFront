@@ -83,8 +83,7 @@ export default function Consultas() {
                 </form>
                 <TableConsultas consultas={consultas} />                
             </div>
-            <button className="fixed bottom-4 right-8 bg-white text-blue-600 font-semibold border-2 shadow-xl border-blue-700 px-5 py-3 rounded-xl hover:bg-green-600 hover:border-green-700 hover:text-white transition-colors duration-75 mb-4">+ Cadastrar consulta</button>
+            <a className="fixed bottom-4 right-8 bg-white text-blue-600 font-semibold border-2 shadow-xl border-blue-700 px-5 py-3 rounded-xl hover:bg-green-600 hover:border-green-700 hover:text-white transition-colors duration-75 mb-4" href="consultas/cadastrar">+ Cadastrar consulta</a>
         </>
-        
     )
 }
