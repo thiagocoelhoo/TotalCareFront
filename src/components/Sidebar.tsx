@@ -1,10 +1,6 @@
 export function Sidebar() {
     const pages = [
         {
-            "name": "Página inicial",
-            "href": "#home",
-        },
-        {
             "name": "Consultas",
             "href": "/app/consultas",
         },
@@ -12,10 +8,6 @@ export function Sidebar() {
             "name": "Pacientes",
             "href": "/app/pacientes",
         },
-        {
-            "name": "Configurações",
-            "href": "#home",
-        }
     ];
     return (
         <div className="fixed w-60 h-screen pt-28 bg-neutral-100 border-r border-neutral-200 p-4 text-black z-20">
@@ -27,7 +19,8 @@ export function Sidebar() {
                             key={page.name}
                         >
                             <a className="px-4 py-2 block" href={page.href}>{page.name}</a>
-                        </li>);
+                        </li>
+                    );
                 })}
             </ul>
         </div>
