@@ -8,6 +8,11 @@ export function Sidebar() {
             "name": "Pacientes",
             "href": "/app/pacientes",
         },
+
+        {
+            "name": "Sair",
+            "href": "/"
+        }
     ];
     return (
         <div className="fixed w-60 h-screen pt-28 bg-neutral-100 border-r border-neutral-200 p-4 text-black z-20">
