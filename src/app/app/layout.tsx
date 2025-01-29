@@ -4,7 +4,6 @@ import { Montserrat } from "next/font/google";
 import "../globals.css";
 
 import { Header } from "../../components/Header"
-import { Sidebar } from "../../components/Sidebar"
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -40,11 +39,7 @@ export default function RootLayout({
             <Header />
           </header>
 
-          <aside>
-            <Sidebar />
-          </aside>
-
-          <main className="relative pl-60 pt-16 w-full h-full">
+          <main className="relative pt-16 w-full h-full">
             {children}
           </main>
       </body>
