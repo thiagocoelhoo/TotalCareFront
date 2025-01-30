@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import logo from './images/logo.png';
 import login_img from './images/login_img.png';
+import api from '@/lib/api';
 
 function LoginForm(props) {
   return (
@@ -19,7 +20,7 @@ function LoginForm(props) {
           <input 
             className="w-full border border-neutral-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" 
             type="text" 
-            name="username" 
+            name="email" 
             placeholder="Digite seu nome de usuário" 
             required 
           />
@@ -30,7 +31,7 @@ function LoginForm(props) {
           <input 
             className="w-full border border-neutral-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" 
             type="password" 
-            name="password" 
+            name="senha" 
             placeholder="Digite sua senha" 
             required 
           />
@@ -56,9 +57,15 @@ function LoginForm(props) {
 }
 
 export default function Home() {  
-  function submitForm(e) {
-    e.preventDefault();
-    console.log('Formulário enviado');
+  function submitForm(event) {
+    const formData = new FormData(event.currentTarget);
+    event.preventDefault();
+
+    api.post('/auth/login', formData).then(
+      response => {
+        localStorage.setItem('AccessToken', response.data);
+      }
+    );
   }
 
   return (
