@@ -1,21 +1,11 @@
 'use client'
 
-type Paciente = {
-    nome: string
-};
+import { ConsultaType } from "@/app/schemas";
+import api from "@/lib/api";
+import { useEffect, useState } from "react";
 
-type Medico = {
-    nome: string
-};
 
-type Consulta = {
-    paciente: Paciente,
-    medico: Medico,
-    horario: string,
-    urgencia: string
-};
-
-function TableConsultas(props: {consultas: Consulta[]}) {
+function TableConsultas(props: {consultas: ConsultaType[]}) {
     return (
         <>
         <table className="text-black w-full" >
@@ -32,7 +22,7 @@ function TableConsultas(props: {consultas: Consulta[]}) {
                     return (
                         <tr className="bg-neutral-100 even:bg-neutral-50">
                             <td className="text-center py-3">{consulta.paciente.nome}</td>
-                            <td className="text-center py-3">{consulta.horario}</td>
+                            <td className="text-center py-3">{consulta.data}</td>
                             <td className="text-center py-3">{consulta.medico.nome}</td>
                             <td className="text-center py-3">{consulta.urgencia}</td>
                         </tr>
@@ -46,32 +36,13 @@ function TableConsultas(props: {consultas: Consulta[]}) {
 }
 
 export default function Consultas() {
-    const consultas = [
-        {
-            paciente: {nome: "Yan Nalbino"},
-            medico: {nome: "Dr. Leonardo"},
-            horario: "16/01/2025 (Hoje)",
-            urgencia: "Não urgente"
-        },
-        {
-            paciente: {nome: "Balbino Yan"},
-            medico: {nome: "Dr. Leozitos"},
-            horario: "22/01/2025",
-            urgencia: "Não urgente"
-        },
-        {
-            paciente: {nome: "Yan Bogueira"},
-            medico: {nome: "Dr. Leo"},
-            horario: "5/02/2025",
-            urgencia: "Não urgente"
-        },
-        {
-            paciente: {nome: "Nay Balbinho"},
-            medico: {nome: "Dr. Guimas"},
-            horario: "13/02/2025",
-            urgencia: "Urgente"
-        },
-    ];
+    const [consultas, setConsultas] = useState<ConsultaType[]>([]);
+
+    useEffect(() => {
+        api.get('/consultas').then(
+            response => setConsultas(response.data)
+        )
+    }, [])
 
     return (
         <>

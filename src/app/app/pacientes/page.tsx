@@ -1,12 +1,11 @@
 'use client'
 
-type Paciente = {
-    nome: string,
-    cpf: string,
-    telefone: string,
-};
+import { PacienteType } from "@/app/schemas";
+import api from "@/lib/api";
+import { useEffect, useState } from "react";
 
-function TablePacientes(props: {pacientes: Paciente[]}) {
+
+function TablePacientes(props: {pacientes: PacienteType[]}) {
     return (
         <>
         <table className="text-black w-full" >
@@ -21,7 +20,7 @@ function TablePacientes(props: {pacientes: Paciente[]}) {
                 {props.pacientes.map(paciente => {
                     return (
                         <tr className="bg-neutral-100 even:bg-neutral-50">
-                            <td className="text-center py-3">{paciente.nome}</td>
+                            <td className="text-center py-3"><a href="/app/pacientes/1">{paciente.nome} {paciente.sobrenome}</a></td>
                             <td className="text-center py-3">{paciente.cpf}</td>
                             <td className="text-center py-3">{paciente.telefone}</td>
                         </tr>
@@ -35,28 +34,13 @@ function TablePacientes(props: {pacientes: Paciente[]}) {
 }
 
 export default function Pacientes() {
-    const pacientes = [
-        {
-            nome: "Yan Balbino Nogueira",
-            cpf: "123.123.123-12",
-            telefone: "84 912345678"
-        },
-        {
-            nome: "Nay B. Nogueira",
-            cpf: "234.234.234-12",
-            telefone: "84 912345678"
-        },
-        {
-            nome: "Yan Nalbino Bogueira",
-            cpf: "345.345.345-12",
-            telefone: "84 912345678"
-        },
-        {
-            nome: "Yab",
-            cpf: "456.456.456-12",
-            telefone: "84 912345678"
-        },
-    ];
+    const [pacientes, setPacientes] = useState<PacienteType[]>([]);
+
+    useEffect(() => {
+        api.get('/pacientes').then(
+            response => setPacientes(response.data)
+        )
+    }, []);
 
     return (
         <>
