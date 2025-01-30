@@ -1,17 +1,19 @@
 'use client'
 
 import api from "@/lib/api";
+import { useRouter } from "next/navigation";
 
 export default function CadastroPaciente() {
+    const router = useRouter();
+
     function submitForm(event) {
         const formData = new FormData(event.currentTarget);
         event.preventDefault();
 
         api.post('/pacientes', formData).then(
             response => {
-                console.log(response.data)
                 if (response.status !== 200) {
-
+                    router.push('/app/pacientes');
                 }
             }
         );
@@ -32,11 +34,6 @@ export default function CadastroPaciente() {
                             <input type="text" name="sobrenome" className="w-full border border-neutral-400 px-4 py-2 rounded-lg"/>
                         </label>
                     </div>
-                    {/* <label>
-                        Data de nascimento
-                        <br/>
-                        <input type="date" name="" className="w-60 border border-neutral-400 px-4 py-2 rounded-lg mb-4"/>
-                    </label> */}
                     <br/>
                     <label>
                         CPF 
