@@ -19,6 +19,7 @@ export const Medico = z.object({
 });
 
 export const Consulta = z.object({
+    id: z.number(),
     paciente: Paciente,
     medico: Medico,
     data: z.string().datetime(),
