@@ -2,10 +2,12 @@
 
 import { PacienteType } from "@/app/schemas";
 import api from "@/lib/api";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 
 function TablePacientes(props: {pacientes: PacienteType[]}) {
+    const router = useRouter();
     return (
         <>
         <table className="text-black w-full" >
@@ -19,9 +21,9 @@ function TablePacientes(props: {pacientes: PacienteType[]}) {
             <tbody>
                 {props.pacientes.map(paciente => {
                     return (
-                        <tr className="bg-neutral-100 even:bg-neutral-50">
-                            <td className="text-center py-3"><a href="/app/pacientes/1">{paciente.nome} {paciente.sobrenome}</a></td>
-                            <td className="text-center py-3">{paciente.cpf}</td>
+                        <tr className="bg-neutral-100 even:bg-neutral-50 cursor-pointer" key={`row-${paciente.id}`} onClick={() => router.push(`/app/pacientes/${paciente.id}`)}>
+                            <td className="text-center py-3">{paciente.nome} {paciente.sobrenome}</td>
+                            <td className="text-center py-3">{paciente.cpf}</td>                            
                             <td className="text-center py-3">{paciente.telefone}</td>
                         </tr>
                     )
