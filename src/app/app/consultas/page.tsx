@@ -20,7 +20,7 @@ function TableConsultas(props: {consultas: ConsultaType[]}) {
             <tbody>
                 {props.consultas.map(consulta => {
                     return (
-                        <tr className="bg-neutral-100 even:bg-neutral-50">
+                        <tr className="bg-neutral-100 even:bg-neutral-50" key={`row-${consulta.id}`}>
                             <td className="text-center py-3">{consulta.paciente.nome}</td>
                             <td className="text-center py-3">{consulta.data}</td>
                             <td className="text-center py-3">{consulta.medico.nome}</td>
