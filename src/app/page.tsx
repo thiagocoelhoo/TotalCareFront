@@ -74,7 +74,7 @@ export default function Home() {
         <LoginForm onSubmit={submitForm} />
       </div>
 
-      <div className="drop-shadow-xl w-2/3 bg-blue-500 flex justify-center items-center relative">
+      <div className="drop-shadow-xl w-3/4 bg-blue-500 flex justify-center items-center relative">
         <Image 
           src={login_img.src} 
           alt="Login Illustration" 

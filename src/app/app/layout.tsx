@@ -31,9 +31,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${montserrat.variable} ${montserrat.variable} antialiased h-full min-h-screen bg-blue-500`}
+      <div
+        className={`h-full min-h-screen w-full min-w-screen bg-blue-500`}
       >
           <header>
             <Header />
@@ -42,7 +41,6 @@ export default function RootLayout({
           <main className="relative pt-16 w-full h-full">
             {children}
           </main>
-      </body>
-    </html>
+      </div>
   );
 }
