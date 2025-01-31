@@ -1,5 +1,11 @@
 import { z } from "zod";
 
+export const TipoUsuario = {
+    Admin: 0,
+    Medico: 1,
+    Atendente: 2,
+}
+
 export const Paciente = z.object({
     id: z.number(),
     nome: z.string(),
@@ -33,6 +39,18 @@ export const Receita = z.object({
     receita: z.string(),
 });
 
+enum A {};
+export const Usuario = z.object({
+    id: z.number(),
+    nome: z.string(),
+    email: z.string().email(),
+    dataCadastro: z.date(),
+    tipoUsuario: z.number(),
+    ativo: z.boolean(),
+})
+
 export type PacienteType = z.infer<typeof Paciente>;
 export type MedicoType = z.infer<typeof Medico>;
 export type ConsultaType = z.infer<typeof Consulta>;
+export type UsuarioType = z.infer<typeof Usuario>;
+
