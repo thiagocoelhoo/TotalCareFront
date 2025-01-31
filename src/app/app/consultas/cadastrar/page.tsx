@@ -6,104 +6,9 @@ import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTrigger } from
 import { DialogClose, DialogTitle } from "@radix-ui/react-dialog";
 import { PacienteType, MedicoType } from "@/app/schemas";
 import api from "@/lib/api";
-
-
-function BuscarPaciente({selecionarPaciente}: { selecionarPaciente: (paciente: PacienteType) => void}) {
-    const [q, setQ] = useState("")
-    const [pacientes, setPacientes] = useState<PacienteType[]>([]);
-
-    useEffect(() => {
-        api.get('/pacientes').then(
-            response => setPacientes(response.data)
-        );
-    }, []);
-
-    return (
-        <>
-            <div className="flex gap-2 mb-2">
-                <input type="text" placeholder="Buscar paciente" className="px-4 py-2 rounded border border-slate-400 w-full" onChange={
-                    (e) => {
-                        setQ(e.target.value);
-                    }
-                }/>
-            </div>
-            <table className="border border-slate-400 w-full border-separate border-spacing-0 rounded">
-                <thead>
-                    <tr className="bg-white text-left">
-                        <th className="px-4 py-2 border-b border-slate-400">Nome</th>
-                        <th className="px-4 py-2 border-b border-slate-400">CPF</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {pacientes.map(
-                        (paciente) => {
-                            if (!(paciente.nome.toLowerCase().includes(q) || paciente.cpf.includes(q)))
-                                return null;
-
-                            return (
-                                <tr 
-                                    className="bg-white hover:bg-zinc-100 cursor-pointer active:bg-blue-200"
-                                    onClick={() => selecionarPaciente(paciente)}
-                                >
-                                    <td className="px-4 py-2">{paciente.nome}</td>
-                                    <td className="px-4 py-2">{paciente.cpf}</td>
-                                </tr>
-                            )
-                        }
-                    )}
-                </tbody>
-            </table>
-        </>
-    )
-}
-
-function BuscarMedico({selecionarMedico}: {selecionarMedico: (medico: MedicoType) => void}) {
-    const [q, setQ] = useState("")
-    const [medicos, setMedicos] = useState<MedicoType[]>([]);
-
-    useEffect(() => {
-        api.get('/medicos').then(
-            response => setMedicos(response.data)
-        );
-    }, []);
-
-    return (
-        <>
-            <div className="flex gap-2 mb-2">
-                <input type="text" placeholder="Buscar paciente" className="px-4 py-2 rounded border border-slate-400 w-full" onChange={
-                    (e) => {
-                        setQ(e.target.value);
-                    }
-                }/>
-            </div>
-            <table className="border border-slate-400 w-full border-separate border-spacing-0 rounded">
-                <thead>
-                    <tr className="bg-white text-left">
-                        <th className="px-4 py-2 border-b border-slate-400">Nome</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {medicos.map(
-                        (medico) => {
-                            if (!(medico.nome.toLowerCase().includes(q)))
-                                return null;
-
-                            return (
-                                <tr 
-                                    key={`row-medico=${medico.id}`}
-                                    className="bg-white hover:bg-zinc-100 cursor-pointer active:bg-blue-200"
-                                    onClick={() => selecionarMedico(medico)}
-                                >
-                                    <td className="px-4 py-2">{medico.nome}</td>
-                                </tr>
-                            )
-                        }
-                    )}
-                </tbody>
-            </table>
-        </>
-    )
-}
+import { Button } from "@/components/ui/button";
+import BuscarPaciente from "../components/BuscarPaciente";
+import BuscarMedico from "../components/BuscarMedico";
 
 export default function CadastroConsulta() {
     const [paciente, setPaciente] = useState<PacienteType | undefined>(undefined);
@@ -169,9 +74,11 @@ export default function CadastroConsulta() {
                                         <span>
                                             Não encontrou o paciente? <a className="text-indigo-800 underline" href="/app/pacientes/cadastrar">Cadastre aqui</a>
                                         </span>
-                                        <DialogClose asChild>
-                                            <button className="px-4 py-2 bg-indigo-500 rounded-lg border border-indigo-600 text-white text-sm font-semibold hover:bg-blue-400">submit</button>
-                                        </DialogClose>
+                                        <Button className="bg-indigo-500" asChild>
+                                            <DialogClose>
+                                                Continuar
+                                            </DialogClose>
+                                        </Button>
                                     </div>
                                 </DialogFooter>
                             </DialogContent>
