@@ -21,7 +21,8 @@ export const Medico = z.object({
     nome: z.string(),
     especialidade: z.string(),
     email: z.string().email(),
-    telefone: z.string()
+    telefone: z.string(),
+    crm: z.string()
 });
 
 export const Consulta = z.object({
