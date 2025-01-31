@@ -42,7 +42,7 @@ export default function PacienteDetails() {
     return (
         <>
             <h1 className="text-center text-2xl text-white font-semibold mb-6 pt-4">Detalhes de paciente</h1>
-            <div className="bg-white p-6 rounded text-black mx-auto w-1/2">
+            <div className="bg-white p-6 rounded-lg text-black mx-auto w-3/5">
                 
                 <h2 className="text-xl font-medium mb-2">Dados do paciente</h2>
                 <table className="mb-4 w-full border border-neutral-400 border-separate border-spacing-0 rounded-lg">

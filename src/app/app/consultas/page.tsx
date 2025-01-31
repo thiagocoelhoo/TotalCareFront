@@ -47,7 +47,7 @@ export default function Consultas() {
     return (
         <>
             <h1 className="w-full text-center  mt-8 mb-4 text-2xl text-white font-bold">Consultas</h1>
-            <div className="bg-white rounded-lg shadow p-4 w-4/5 mx-auto">
+            <div className="bg-white rounded-lg shadow p-4 w-3/5 mx-auto">
                 <form className="mb-4">
                     <input type="text" placeholder="Buscar consulta" className="border border-neutral-300 px-4 py-2 rounded-lg w-1/3 mr-2" />
                     <input type="submit" value="Buscar" className="border border-neutral-300 px-3 py-2 rounded-lg text-neutral-700 hover:bg-neutral-100" />
