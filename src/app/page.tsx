@@ -4,6 +4,7 @@ import Image from 'next/image';
 import logo from './images/logo.png';
 import login_img from './images/login_img.png';
 import api from '@/lib/api';
+import { useRouter } from 'next/navigation';
 
 function LoginForm(props) {
   return (
@@ -57,6 +58,8 @@ function LoginForm(props) {
 }
 
 export default function Home() {  
+  const router = useRouter();
+
   function submitForm(event) {
     const formData = new FormData(event.currentTarget);
     event.preventDefault();
@@ -64,6 +67,7 @@ export default function Home() {
     api.post('/auth/login', formData).then(
       response => {
         localStorage.setItem('AccessToken', response.data);
+        router.refresh();
       }
     );
   }
